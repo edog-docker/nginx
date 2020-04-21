@@ -36,6 +36,6 @@ web:
 
 源码目录 `/usr/local/nginx-${NGINX_VERSION}`
 
-## nginx版本
-- 1.17.10, latest ✔
-- 1.16.1 🔨
+## 其他版本Nginx
+- [1.17.10, latest](https://github.com/edog-docker/nginx/blob/1.17.10/Dockerfile) ✔
+- [1.16.1](https://github.com/edog-docker/nginx/blob/1.16.1/Dockerfile) ✔
