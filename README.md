@@ -7,6 +7,8 @@
 docker pull flxxyz/nginx:latest
 ```
 
+[使用其他版本Nginx](#其他版本Nginx)
+
 ## 编排例子
 ```
 web:

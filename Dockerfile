@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-ENV NGINX_VERSION=1.16.1
+ENV NGINX_VERSION=1.17.1
 
 WORKDIR /usr/local
 
