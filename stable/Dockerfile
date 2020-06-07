@@ -25,6 +25,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     spawn-fcgi \
     && wget -c "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
     && git clone --depth 1 https://github.com/aperezdc/ngx-fancyindex.git \
+    && git clone --depth 1 https://github.com/winshining/nginx-http-flv-module.git \
     && tar -zxf nginx-${NGINX_VERSION}.tar.gz \
     && cd nginx-${NGINX_VERSION} \
     && sed -i 's/\.openssl\///g' auto/lib/openssl/conf \
@@ -64,6 +65,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     --with-http_geoip_module=dynamic \
     --with-openssl=/usr \
     --add-dynamic-module=../ngx-fancyindex \
+    --add-dynamic-module=../nginx-http-flv-module \
     && make -j$(nproc) \
     && make install \
     && make clean \
@@ -71,6 +73,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && apk del gcc \
     && rm -rf /etc/nginx/*.default \
     /usr/local/ngx-fancyindex \
+    /usr/local/nginx-http-flv-module \
     /var/cache/apk/*
 
 COPY nginx.conf /etc/nginx/
