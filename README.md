@@ -6,6 +6,13 @@
 ```
 docker pull flxxyz/nginx:latest
 ```
+### 支持流媒体(RTMP, HTTP-FLV, HLS)
+
+```
+docker pull flxxyz/nginx:nginx-http-flv-module
+```
+
+感谢 [winshining/nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module) 的
 
 [使用其他版本Nginx](#其他版本Nginx)
 
@@ -39,6 +46,7 @@ web:
 源码目录 `/usr/local/nginx-${NGINX_VERSION}`
 
 ## 其他版本Nginx
+- [nginx-http-flv-module](https://hub.docker.com/repository/docker/flxxyz/nginx/tags?page=1&name=nginx-http-flv-module) ✔
 - [1.19.0](https://github.com/edogDocker/nginx/blob/master/mainline/Dockerfile) ✔
 - [1.18.0, latest](https://github.com/edogDocker/nginx/blob/master/stable/Dockerfile) ✔
 - [1.17.10](https://github.com/edog-docker/nginx/blob/1.17.10/Dockerfile) ✔
