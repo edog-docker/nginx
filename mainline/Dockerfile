@@ -1,6 +1,6 @@
 FROM alpine:3.10
 
-ENV NGINX_VERSION=1.19.0
+ENV NGINX_VERSION=1.19.2
 
 WORKDIR /usr/local
 
@@ -21,8 +21,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     libxml2-dev \
     libxslt-dev \
     libressl-dev \
-    fcgiwrap \
-    spawn-fcgi \
     && wget -c "https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz" \
     && git clone --depth 1 https://github.com/aperezdc/ngx-fancyindex.git \
     && tar -zxf nginx-${NGINX_VERSION}.tar.gz \
@@ -76,8 +74,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 COPY nginx.conf /etc/nginx/
 COPY default.conf /etc/nginx/conf.d/
 
-RUN addgroup -g 1018 -S nginx \
-    && adduser -S -D -H -u 101 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
+RUN addgroup -g 10180 -S nginx \
+    && adduser -S -D -H -u 10180 -h /var/cache/nginx -s /sbin/nologin -G nginx -g nginx nginx \
     && chown -R nginx:nginx /var/log/nginx /usr/share/nginx/html \
     && nginx -t
 
@@ -85,5 +83,4 @@ EXPOSE 80 443
 
 STOPSIGNAL SIGTERM
 
-CMD spawn-fcgi -u nginx -g nginx -s /run/fcgi.sock -F /usr/bin/fcgiwrap \
-    && nginx -g "daemon off;"
+CMD nginx -g "daemon off;"
